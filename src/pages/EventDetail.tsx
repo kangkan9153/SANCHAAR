@@ -123,7 +123,11 @@ export const EventDetail: React.FC<EventDetailProps> = ({ slug, onNavigate, onRe
             className="darksoul-hover-fill-button2"
             onClick={() => {
               onNavigate('/events');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              try {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } catch {
+                window.scrollTo(0, 0);
+              }
             }}
             type="button"
           >

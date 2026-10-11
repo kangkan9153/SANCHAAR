@@ -280,7 +280,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
           <button
             onClick={() => {
               onNavigate('/events');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              try {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } catch {
+                window.scrollTo(0, 0);
+              }
             }}
             className="btn btn-white text-center flex items-center px-6 py-2.5 rounded-full border-0 shadow-none cursor-pointer"
             style={{

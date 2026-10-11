@@ -91,7 +91,11 @@ export const Events: React.FC<EventsProps> = ({ onNavigate, onRegisterEvent }) =
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate(`/events/${event.slug}`);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  try {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } catch {
+                    window.scrollTo(0, 0);
+                  }
                 }}
                 className="card-event-link"
               >

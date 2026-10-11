@@ -6,13 +6,67 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const [shareToast, setShareToast] = React.useState<string | null>(null);
+
   const handleLinkClick = (path: string) => {
     onNavigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handleShareLinkedIn = (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      const currentUrl = typeof window !== 'undefined' && window.location ? window.location.href.split('#')[0] : 'https://agemc.ac.in';
+      const isLocal = currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1');
+      const shareUrl = isLocal ? 'https://agemc.ac.in' : currentUrl;
+      const shareEndpoint = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentUrl).catch(() => {});
+      }
+
+      window.open(shareEndpoint, '_blank', 'noopener,noreferrer');
+      setShareToast('URL copied to clipboard! Opening LinkedIn share dialog...');
+      setTimeout(() => setShareToast(null), 4000);
+    } catch {
+      window.open(SANCHAAR_INFO.socials.linkedin, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
     <footer>
+      {/* Toast Notification */}
+      {shareToast && (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            position: 'fixed',
+            bottom: '24px',
+            right: '24px',
+            backgroundColor: '#101923',
+            color: '#10bfc5',
+            padding: '12px 20px',
+            borderRadius: '6px',
+            fontSize: '13px',
+            fontWeight: 600,
+            boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
+            border: '1px solid #10bfc5',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <i className="fa fa-check-circle" />
+          <span>{shareToast}</span>
+        </div>
+      )}
+
       <div className="footer-cols">
         {/* Brand & Social Column */}
         <div className="logo_social">
@@ -99,32 +153,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </a>
               <a
                 href={`mailto:${SANCHAAR_INFO.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Email"
+                aria-label="Email SANCHAAR"
                 title="Email SANCHAAR"
               >
                 <i className="fa fa-envelope" />
               </a>
             </p>
             <div style={{ marginTop: '12px' }}>
-              <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://ais-pre-zt6pyan2hxaadcybkfb674-227087433411.asia-southeast1.run.app')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors"
+              <button
+                type="button"
+                onClick={handleShareLinkedIn}
+                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors cursor-pointer"
                 style={{
                   background: 'rgba(255, 255, 255, 0.08)',
-                  padding: '4px 10px',
+                  padding: '6px 12px',
                   borderRadius: '4px',
-                  textDecoration: 'none',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
                   fontSize: '11px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
                 }}
+                title="Share SANCHAAR on LinkedIn"
               >
                 <i className="fa fa-linkedin" style={{ color: '#0a66c2' }} />
                 <span>Share on LinkedIn</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>

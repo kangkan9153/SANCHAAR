@@ -31,7 +31,11 @@ export class ErrorBoundary extends Component<Props, State> {
     } catch {
       // ignore in sandboxed iframes
     }
-    window.location.reload();
+    try {
+      window.location.reload();
+    } catch {
+      // fallback in sandboxed frames
+    }
   };
 
   public render() {

@@ -60,12 +60,14 @@ export const Faculty: React.FC = () => {
                 </div>
 
                 <div className="tBtn">
-                  <button>
-                    <a
-                      href={`mailto:${prof.email}`}
-                    >
-                      Contact Mentor
-                    </a>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = `mailto:${prof.email}`;
+                    }}
+                  >
+                    Contact Mentor
                   </button>
                 </div>
               </div>
