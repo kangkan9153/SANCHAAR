@@ -1,0 +1,6 @@
+{
+  "name": "SANCHAAR — IoT & Robotics Club",
+  "description": "Official website for SANCHAAR, the IoT and Robotics Club of the ECE Department at Alipurduar Government Engineering and Management College (AGEMC).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
