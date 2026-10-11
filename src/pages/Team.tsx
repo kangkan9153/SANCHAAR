@@ -31,8 +31,9 @@ const TeamCard: React.FC<SanchaarTeamMember> = ({
           <a
             href={linkedin}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label={`${name} LinkedIn`}
+            onClick={(e) => e.stopPropagation()}
           >
             <i className="ri-linkedin-box-line" />
           </a>
@@ -41,8 +42,9 @@ const TeamCard: React.FC<SanchaarTeamMember> = ({
           <a
             href={github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label={`${name} GitHub`}
+            onClick={(e) => e.stopPropagation()}
           >
             <i className="fa fa-github" />
           </a>

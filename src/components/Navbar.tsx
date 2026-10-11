@@ -17,7 +17,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenJ
   const handleLinkClick = (path: string) => {
     onNavigate(path);
     setIsOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
   };
 
   const navLinks = [

@@ -69,40 +69,63 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <span />
               </div>
             </h3>
-            <p style={{ marginTop: '10px' }}>
+            <p style={{ marginTop: '10px' }} className="flex flex-wrap items-center gap-2">
               <a
                 href={SANCHAAR_INFO.socials.linkedin}
                 target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
+                rel="noopener noreferrer"
+                aria-label="SANCHAAR at AGEMC on LinkedIn"
+                title="Connect with AGEMC on LinkedIn"
               >
                 <i className="fa fa-linkedin" />
               </a>
               <a
                 href={SANCHAAR_INFO.socials.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="GitHub"
+                title="SANCHAAR GitHub Repositories"
               >
                 <i className="fa fa-github" />
               </a>
               <a
                 href={SANCHAAR_INFO.socials.instagram}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
+                title="SANCHAAR Instagram"
               >
                 <i className="fa fa-instagram" />
               </a>
               <a
                 href={`mailto:${SANCHAAR_INFO.email}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Email"
+                title="Email SANCHAAR"
               >
                 <i className="fa fa-envelope" />
               </a>
             </p>
+            <div style={{ marginTop: '12px' }}>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://ais-pre-zt6pyan2hxaadcybkfb674-227087433411.asia-southeast1.run.app')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  padding: '4px 10px',
+                  borderRadius: '4px',
+                  textDecoration: 'none',
+                  fontSize: '11px',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                }}
+              >
+                <i className="fa fa-linkedin" style={{ color: '#0a66c2' }} />
+                <span>Share on LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
 

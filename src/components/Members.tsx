@@ -81,9 +81,10 @@ export const Members: React.FC = () => {
                       <a
                         href={member.githubUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-[#6B6B6B] hover:text-[#101923] transition-colors p-1"
                         aria-label={`${member.name} GitHub profile`}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <Github className="w-4 h-4" />
                       </a>
@@ -92,9 +93,10 @@ export const Members: React.FC = () => {
                       <a
                         href={member.linkedinUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-[#6B6B6B] hover:text-[#1C69D4] transition-colors p-1"
                         aria-label={`${member.name} LinkedIn profile`}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>

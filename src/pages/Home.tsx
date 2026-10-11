@@ -409,12 +409,26 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
                       </h2>
                       <ul className="sci-teamhome">
                         <li>
-                          <a href={item.linkedin} target="_blank" rel="noreferrer" className="linkedin" aria-label="LinkedIn">
+                          <a
+                            href={item.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="linkedin"
+                            aria-label={`${item.name} LinkedIn`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <i className="ri-linkedin-box-line" />
                           </a>
                         </li>
                         <li>
-                          <a href={item.github} target="_blank" rel="noreferrer" className="instagram" aria-label="GitHub">
+                          <a
+                            href={item.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="instagram"
+                            aria-label={`${item.name} GitHub`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <i className="fa fa-github" />
                           </a>
                         </li>
@@ -432,7 +446,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
           <button
             onClick={() => {
               onNavigate('/team');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              try {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } catch {
+                window.scrollTo(0, 0);
+              }
             }}
             className="btn btn-white text-center flex items-center px-6 py-2.5 rounded-full border-0 shadow-none cursor-pointer"
             style={{

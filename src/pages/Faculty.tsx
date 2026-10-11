@@ -46,7 +46,13 @@ export const Faculty: React.FC = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                      <a
+                        href="https://www.linkedin.com/school/alipurduar-government-engineering-and-management-college/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="AGEMC Faculty LinkedIn Directory"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <i className="fa fa-linkedin" />
                       </a>
                     </li>
