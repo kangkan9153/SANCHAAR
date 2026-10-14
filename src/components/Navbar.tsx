@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenJ
         {/* Brand Logo & Wordmark */}
         <div className="logo1">
           <a
-            href="/"
+            href="#/"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('/');
@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onOpenJ
             return (
               <li key={item.path}>
                 <a
-                  href={item.path}
+                  href={item.path === '/' ? '#/' : `#${item.path}`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick(item.path);

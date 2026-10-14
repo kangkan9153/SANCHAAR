@@ -7,23 +7,29 @@
       // Single Page App redirect for GitHub Pages
       // Ensures deep links like https://<user>.github.io/<repo>/projects route to index.html with hash/query intact
       (function() {
-        var pathSegmentsToKeep = 1; // Keep 1 segment for repository name on github.io
         var l = window.location;
         var hostname = l.hostname;
         var isGitHubIo = hostname.endsWith('github.io');
-        
+
         var segments = l.pathname.split('/').filter(Boolean);
         var repoSegment = isGitHubIo && segments.length > 0 ? '/' + segments[0] : '';
-        var remainingPath = isGitHubIo ? segments.slice(1).join('/') : segments.join('/');
+        var pathList = isGitHubIo ? segments.slice(1) : segments;
+        var remainingPath = pathList.join('/');
 
-        var redirectTarget = l.protocol + '//' + l.host + repoSegment + '/#/' + remainingPath + (l.search ? l.search : '') + l.hash;
+        // Filter out 404.html or index.html to avoid infinite redirect loops
+        if (remainingPath === '404.html' || remainingPath === '404' || remainingPath === 'index.html') {
+          remainingPath = '';
+        }
+
+        var hashTarget = remainingPath ? '#/' + remainingPath : '#/';
+        var redirectTarget = l.protocol + '//' + l.host + repoSegment + '/' + hashTarget + (l.search ? l.search : '');
         window.location.replace(redirectTarget);
       })();
     </script>
   </head>
   <body style="background-color: #101923; color: #10bfc5; font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
     <div style="text-align: center;">
-      <p style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">SANCHAAR</p>
+      <p style="font-size: 20px; font-weight: bold; letter-spacing: 1px; color: #10bfc5;">SANCHAAR</p>
       <p style="color: #94a3b8; font-size: 14px;">Loading page...</p>
     </div>
   </body>

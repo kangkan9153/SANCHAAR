@@ -228,7 +228,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <ul>
             <li>
               <a
-                href="/"
+                href="#/"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/');
@@ -239,7 +239,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/domains"
+                href="#/domains"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/domains');
@@ -250,7 +250,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/events"
+                href="#/events"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/events');
@@ -261,7 +261,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/projects"
+                href="#/projects"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/projects');
@@ -272,7 +272,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/faculty"
+                href="#/faculty"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/faculty');
@@ -283,7 +283,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/team"
+                href="#/team"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/team');
@@ -294,7 +294,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </li>
             <li>
               <a
-                href="/gallery"
+                href="#/gallery"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('/gallery');
