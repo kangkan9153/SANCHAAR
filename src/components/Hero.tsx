@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowDown, ArrowRight } from 'lucide-react';
+import { CLUB_IMAGES } from '../assets/images';
 
 interface HeroProps {
   onExploreProjects: () => void;
@@ -15,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProjects, onDiscoverAbout }
       {/* Background Cinematic Photo with Measured Contrast Scrim */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/images/hero_robotics_lab_1791620915867.jpg"
+          src={CLUB_IMAGES.heroRoboticsLab}
           alt="High-Tech University Robotics and Embedded Systems Laboratory at AGEMC"
           className="w-full h-full object-cover object-center scale-100 transition-transform duration-1000 ease-out"
           loading="eager"

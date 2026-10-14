@@ -1,5 +1,6 @@
 import React from 'react';
 import { SANCHAAR_INFO } from '../data/sanchaarData';
+import { SocialConnectModal } from './modals/SocialConnectModal';
 
 interface FooterProps {
   onNavigate: (path: string) => void;
@@ -7,6 +8,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [shareToast, setShareToast] = React.useState<string | null>(null);
+  const [isSocialModalOpen, setIsSocialModalOpen] = React.useState(false);
 
   const handleLinkClick = (path: string) => {
     onNavigate(path);
@@ -19,22 +21,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   const handleShareLinkedIn = (e: React.MouseEvent) => {
     e.preventDefault();
-    try {
-      const currentUrl = typeof window !== 'undefined' && window.location ? window.location.href.split('#')[0] : 'https://agemc.ac.in';
-      const isLocal = currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1');
-      const shareUrl = isLocal ? 'https://agemc.ac.in' : currentUrl;
-      const shareEndpoint = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+    const shareUrl = 'https://agemc.ac.in';
+    const shareEndpoint = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(currentUrl).catch(() => {});
-      }
-
-      window.open(shareEndpoint, '_blank', 'noopener,noreferrer');
-      setShareToast('URL copied to clipboard! Opening LinkedIn share dialog...');
-      setTimeout(() => setShareToast(null), 4000);
-    } catch {
-      window.open(SANCHAAR_INFO.socials.linkedin, '_blank', 'noopener,noreferrer');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).catch(() => {});
     }
+
+    try {
+      window.open(shareEndpoint, '_blank', 'noopener,noreferrer');
+    } catch {
+      // browser popup blocker
+    }
+    setShareToast('AGEMC SANCHAAR portal URL copied! Opening LinkedIn share window...');
+    setTimeout(() => setShareToast(null), 4000);
   };
 
   return (
@@ -129,7 +129,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="SANCHAAR at AGEMC on LinkedIn"
-                title="Connect with AGEMC on LinkedIn"
+                title="Connect with SANCHAAR on LinkedIn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsSocialModalOpen(true);
+                }}
               >
                 <i className="fa fa-linkedin" />
               </a>
@@ -312,6 +316,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           Designed and Developed by <b style={{ color: 'black' }}>ECE Student Web Team</b>.
         </p>
       </div>
+
+      <SocialConnectModal
+        isOpen={isSocialModalOpen}
+        onClose={() => setIsSocialModalOpen(false)}
+      />
     </footer>
   );
 };

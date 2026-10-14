@@ -1,3 +1,5 @@
+import { CLUB_IMAGES } from '../assets/images';
+
 export type ProjectCategory = 'IOT' | 'ROBOTICS' | 'EMBEDDED SYSTEMS' | 'PCB DESIGN' | 'AUTOMATION';
 
 export interface ClubProject {
@@ -47,7 +49,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'Home Assistant Local Integration API',
     ],
     architectureDetails: 'Core 0 handles Wi-Fi stack negotiation, MQTT keep-alive handshakes, and WebSockets. Core 1 monitors pin state interrupts, debounce logic, and drives relay trigger gates in hard real-time.',
-    image: '/src/assets/images/iot_smart_hardware_1791620940762.jpg',
+    image: CLUB_IMAGES.iotSmartHardware,
     contributors: ['ECE Hardware Team (Sample Student Project)', 'IoT Interest Group'],
     githubUrl: 'https://github.com/sanchaar-club/esp32-home-node',
     completionDate: 'June 2026',
@@ -79,7 +81,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'Python / OpenCV for auxiliary optical marker recognition',
     ],
     architectureDetails: 'Hierarchical control architecture: STM32 executes real-time PID loops every 5ms to maintain target wheel velocities; Raspberry Pi runs global path-planning and streams point-cloud diagnostics.',
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
     contributors: ['Robotics Sub-Group (Sample Student Project)', 'Kinematics Lead'],
     githubUrl: 'https://github.com/sanchaar-club/autonomous-mecanum-rover',
     completionDate: 'April 2026',
@@ -111,7 +113,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'Node-RED + Grafana Campus Dashboard',
     ],
     architectureDetails: 'Wake-sample-transmit-sleep architecture: MCU wakes every 10 minutes, powers sensors via P-channel MOSFET switches, averages 5 samples, broadcasts over LoRa, and enters deep sleep.',
-    image: '/src/assets/images/hero_robotics_lab_1791620915867.jpg',
+    image: CLUB_IMAGES.heroRoboticsLab,
     contributors: ['Embedded Systems Cell', 'Sensors Working Group'],
     githubUrl: 'https://github.com/sanchaar-club/lora-ambient-station',
     completionDate: 'Ongoing Field Evaluation',
@@ -142,7 +144,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'Minimal HTML5 web configuration portal hosted on flash memory',
     ],
     architectureDetails: 'Analog frequency readouts are normalized through an empirical calibration curve. The state engine enforces hysteresis to prevent pump flutter near threshold values.',
-    image: '/src/assets/images/about_engineering_team_1791620929739.jpg',
+    image: CLUB_IMAGES.aboutEngineeringTeam,
     contributors: ['Automation Team (Sample Student Project)'],
     githubUrl: 'https://github.com/sanchaar-club/smart-irrigation-node',
     completionDate: 'February 2026',
@@ -173,7 +175,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'EEPROM threshold parameter storage',
     ],
     architectureDetails: 'Dual-threshold alarm logic: Threshold 1 initiates warning beacon and exhaust fan relay; Threshold 2 triggers gas solenoid cutoff and emergency SMS dispatches.',
-    image: '/src/assets/images/gallery_soldering_lab_1791620964393.jpg',
+    image: CLUB_IMAGES.gallerySolderingLab,
     contributors: ['ECE Safety Engineering Initiative'],
     githubUrl: 'https://github.com/sanchaar-club/hazard-gas-interlock',
     completionDate: 'Active Club Development',
@@ -204,7 +206,7 @@ export const CLUB_PROJECTS: ClubProject[] = [
       'JLCPCB Fabrication & SMT Assembly Profiling',
     ],
     architectureDetails: 'Split ground plane geometry separating noisy motor return currents from sensitive analog and digital MCU grounds to ensure crystal-clear sensor readings.',
-    image: '/src/assets/images/gallery_soldering_lab_1791620964393.jpg',
+    image: CLUB_IMAGES.gallerySolderingLab,
     contributors: ['PCB Design Group (Sample Student Project)'],
     githubUrl: 'https://github.com/sanchaar-club/modular-mcu-carrier-board',
     completionDate: 'January 2026',

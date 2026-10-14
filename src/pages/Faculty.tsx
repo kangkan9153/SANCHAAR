@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SANCHAAR_FACULTY } from '../data/sanchaarData';
+import { SocialConnectModal } from '../components/modals/SocialConnectModal';
 
 export const Faculty: React.FC = () => {
+  const [isSocialModalOpen, setIsSocialModalOpen] = useState(false);
+
   return (
     <div className="rprofessors" style={{ paddingTop: '8rem', paddingBottom: '6rem', minHeight: '100vh' }}>
       {/* Heading */}
@@ -47,11 +50,15 @@ export const Faculty: React.FC = () => {
                     </li>
                     <li>
                       <a
-                        href="https://www.linkedin.com/school/alipurduar-government-engineering-and-management-college/"
+                        href="https://www.linkedin.com/company/agemc/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="AGEMC Faculty LinkedIn Directory"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setIsSocialModalOpen(true);
+                        }}
                       >
                         <i className="fa fa-linkedin" />
                       </a>
@@ -75,6 +82,11 @@ export const Faculty: React.FC = () => {
           </div>
         ))}
       </div>
+
+      <SocialConnectModal
+        isOpen={isSocialModalOpen}
+        onClose={() => setIsSocialModalOpen(false)}
+      />
     </div>
   );
 };

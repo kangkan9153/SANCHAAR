@@ -25,22 +25,46 @@ import { TechDomain } from './data/domains';
 import { GALLERY_ITEMS, GalleryItem } from './data/gallery';
 
 /**
+ * Detects repository prefix on GitHub Pages (e.g. '/<repo-name>')
+ */
+function getRepositoryPrefix(): string {
+  try {
+    if (typeof window === 'undefined') return '';
+    const { hostname, pathname } = window.location;
+    if (hostname.endsWith('github.io')) {
+      const segments = pathname.split('/').filter(Boolean);
+      if (segments.length > 0) {
+        return '/' + segments[0];
+      }
+    }
+  } catch {}
+  return '';
+}
+
+/**
  * Normalizes pathname or hash to a standard route path like:
  * '/', '/domains', '/events', '/events/:slug', '/projects', '/faculty', '/team', '/gallery'
  */
 function resolveCurrentPath(): string {
   try {
     // 1. Check hash first for SPA hash-routing (#/events or #events)
-    const hash = window.location.hash.replace(/^#\/?/, '').trim();
-    if (hash) {
-      const cleanHash = '/' + hash.split('?')[0].replace(/\/+$/, '');
+    const rawHash = window.location.hash.replace(/^#\/?/, '').trim();
+    if (rawHash) {
+      const cleanHash = '/' + rawHash.split('?')[0].replace(/\/+$/, '');
       return cleanHash === '' ? '/' : cleanHash;
     }
 
     // 2. Check window.location.pathname
     let pathname = window.location.pathname || '/';
-    // Remove query params or index.html
     pathname = pathname.split('?')[0];
+
+    // Strip repository prefix on GitHub Pages if present
+    const repoPrefix = getRepositoryPrefix();
+    if (repoPrefix && pathname.startsWith(repoPrefix)) {
+      pathname = pathname.slice(repoPrefix.length) || '/';
+    }
+
+    // Remove index.html
     if (pathname === '/index.html' || pathname === '') {
       return '/';
     }
@@ -73,14 +97,22 @@ export default function App() {
     if (!target.startsWith('/')) target = '/' + target;
     if (target.length > 1 && target.endsWith('/')) target = target.slice(0, -1);
 
-    // Try pushState; if blocked by iframe sandbox, use hash fallback safely
-    try {
-      window.history.pushState({}, '', target);
-    } catch {
+    const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io');
+    const hasHash = typeof window !== 'undefined' && Boolean(window.location.hash);
+
+    // On GitHub Pages or when hash is already in use, keep in hash so page refreshes never 404
+    if (isGitHubPages || hasHash) {
       try {
-        window.location.hash = target;
+        window.location.hash = target === '/' ? '' : target;
+      } catch {}
+    } else {
+      const repoPrefix = getRepositoryPrefix();
+      try {
+        window.history.pushState({}, '', repoPrefix + target);
       } catch {
-        // Fallback in case hash is also restricted
+        try {
+          window.location.hash = target === '/' ? '' : target;
+        } catch {}
       }
     }
 

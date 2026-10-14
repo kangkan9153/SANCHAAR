@@ -1,3 +1,5 @@
+import { CLUB_IMAGES } from '../assets/images';
+
 export interface TechDomain {
   id: string;
   title: string;
@@ -22,7 +24,7 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Power budget optimization for remote battery-powered nodes',
       'Real-time data visualization and cloud broker deployment',
     ],
-    image: '/src/assets/images/iot_smart_hardware_1791620940762.jpg',
+    image: CLUB_IMAGES.iotSmartHardware,
   },
   {
     id: 'robotics',
@@ -36,7 +38,7 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Sensor fusion with IMU and wheel odometry',
       'State-machine architecture for autonomous mission execution',
     ],
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
   },
   {
     id: 'embedded',
@@ -50,7 +52,7 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Bare-metal peripheral register manipulation without bloated abstractions',
       'Deterministic interrupt handling and RTOS task synchronization',
     ],
-    image: '/src/assets/images/hero_robotics_lab_1791620915867.jpg',
+    image: CLUB_IMAGES.heroRoboticsLab,
   },
   {
     id: 'pcb',
@@ -64,7 +66,7 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Signal integrity, trace width calculation, and decoupling layout',
       'SMD assembly and post-assembly continuity testing',
     ],
-    image: '/src/assets/images/gallery_soldering_lab_1791620964393.jpg',
+    image: CLUB_IMAGES.gallerySolderingLab,
   },
   {
     id: 'sensors',
@@ -78,7 +80,7 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Sensor calibration curves, sensitivity drift, and linearization',
       'High-speed transient acquisition and fault-tolerant interfacing',
     ],
-    image: '/src/assets/images/about_engineering_team_1791620929739.jpg',
+    image: CLUB_IMAGES.aboutEngineeringTeam,
   },
   {
     id: 'intelligent',
@@ -92,6 +94,6 @@ export const TECHNOLOGY_DOMAINS: TechDomain[] = [
       'Color segmentation and visual servoing for robotic manipulation',
       'Predictive maintenance using vibration spectrum anomaly classification',
     ],
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
   },
 ];

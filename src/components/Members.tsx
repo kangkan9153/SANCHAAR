@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { CLUB_MEMBERS, ClubMember, MemberCategory } from '../data/members';
 import { Faculty } from './Faculty';
 import { Github, Linkedin, ExternalLink } from 'lucide-react';
+import { MemberDetailModal, ModalMember } from './modals/MemberDetailModal';
 
 export const Members: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('ALL');
+  const [selectedMember, setSelectedMember] = useState<ModalMember | null>(null);
 
   const categories = ['ALL', 'CORE TEAM', 'TECHNICAL TEAM', 'EVENTS TEAM', 'DESIGN TEAM'];
 
@@ -64,7 +66,17 @@ export const Members: React.FC = () => {
           {filteredMembers.map((member) => (
             <div
               key={member.id}
-              className="bg-white border border-[#E6E6E6] p-6 flex flex-col justify-between group hover:border-[#1C69D4] transition-all duration-300"
+              className="bg-white border border-[#E6E6E6] p-6 flex flex-col justify-between group hover:border-[#1C69D4] transition-all duration-300 cursor-pointer"
+              onClick={() => setSelectedMember({
+                name: member.name,
+                role: member.role,
+                yearDept: member.yearDept,
+                linkedin: member.linkedinUrl || '',
+                github: member.githubUrl,
+                techInterests: member.techInterests,
+                category: member.category,
+              })}
+              title={`View ${member.name}'s profile and connections`}
             >
               <div>
                 {/* Header with Avatar and Socials */}
@@ -84,7 +96,20 @@ export const Members: React.FC = () => {
                         rel="noopener noreferrer"
                         className="text-[#6B6B6B] hover:text-[#101923] transition-colors p-1"
                         aria-label={`${member.name} GitHub profile`}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setSelectedMember({
+                            name: member.name,
+                            role: member.role,
+                            yearDept: member.yearDept,
+                            linkedin: member.linkedinUrl || '',
+                            github: member.githubUrl,
+                            techInterests: member.techInterests,
+                            category: member.category,
+                          });
+                        }}
+                        title={`View ${member.name} on GitHub`}
                       >
                         <Github className="w-4 h-4" />
                       </a>
@@ -96,7 +121,20 @@ export const Members: React.FC = () => {
                         rel="noopener noreferrer"
                         className="text-[#6B6B6B] hover:text-[#1C69D4] transition-colors p-1"
                         aria-label={`${member.name} LinkedIn profile`}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setSelectedMember({
+                            name: member.name,
+                            role: member.role,
+                            yearDept: member.yearDept,
+                            linkedin: member.linkedinUrl || '',
+                            github: member.githubUrl,
+                            techInterests: member.techInterests,
+                            category: member.category,
+                          });
+                        }}
+                        title={`Connect with ${member.name} on LinkedIn`}
                       >
                         <Linkedin className="w-4 h-4" />
                       </a>
@@ -144,6 +182,12 @@ export const Members: React.FC = () => {
         {/* Section B: Faculty Mentors Component */}
         <Faculty />
       </div>
+
+      {/* Member Profile Modal */}
+      <MemberDetailModal
+        member={selectedMember}
+        onClose={() => setSelectedMember(null)}
+      />
     </section>
   );
 };

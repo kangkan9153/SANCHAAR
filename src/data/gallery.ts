@@ -1,3 +1,5 @@
+import { CLUB_IMAGES } from '../assets/images';
+
 export type GalleryCategory = 'PROJECTS' | 'WORKSHOPS' | 'TEAM' | 'EVENTS';
 
 export interface GalleryItem {
@@ -17,7 +19,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'PROJECTS',
     date: 'APRIL 2026',
     caption: 'Tuning 360° LiDAR scanner alignments and checking 4-wheel independent motor drivers on the testbench in the AGEMC robotics lab.',
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
     aspectRatio: 'landscape',
   },
   {
@@ -26,7 +28,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'WORKSHOPS',
     date: 'FEBRUARY 2026',
     caption: 'Student placing 0805 SMD passive resistors and micro-controllers under a temperature-controlled magnifying inspection station.',
-    image: '/src/assets/images/gallery_soldering_lab_1791620964393.jpg',
+    image: CLUB_IMAGES.gallerySolderingLab,
     aspectRatio: 'landscape',
   },
   {
@@ -35,7 +37,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'TEAM',
     date: 'MARCH 2026',
     caption: 'ECE student team probing digital bus signals and PWM output waveforms using a high-bandwidth digital storage oscilloscope.',
-    image: '/src/assets/images/about_engineering_team_1791620929739.jpg',
+    image: CLUB_IMAGES.aboutEngineeringTeam,
     aspectRatio: 'landscape',
   },
   {
@@ -44,7 +46,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'PROJECTS',
     date: 'MAY 2026',
     caption: 'ESP32 development board reading digital temperature, pressure, and humidity sensor streams with live OLED status readout.',
-    image: '/src/assets/images/iot_smart_hardware_1791620940762.jpg',
+    image: CLUB_IMAGES.iotSmartHardware,
     aspectRatio: 'landscape',
   },
   {
@@ -53,7 +55,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'EVENTS',
     date: 'JUNE 2026',
     caption: 'Robotics team collaborating during an intensive sprint session preparing prototype submissions for the regional engineering symposium.',
-    image: '/src/assets/images/hero_robotics_lab_1791620915867.jpg',
+    image: CLUB_IMAGES.heroRoboticsLab,
     aspectRatio: 'landscape',
   },
   {
@@ -62,7 +64,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     category: 'PROJECTS',
     date: 'JULY 2026',
     caption: 'Evaluating lateral omnidirectional trajectory repeatability on industrial flat tile surfaces in the main department gallery.',
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
     aspectRatio: 'landscape',
   },
 ];

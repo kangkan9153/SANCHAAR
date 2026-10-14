@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cpu, Wifi, Bot, Compass, Share2, Layers, ArrowRight } from 'lucide-react';
+import { CLUB_IMAGES } from '../assets/images';
 
 interface AboutProps {
   onLearnMoreDomains: () => void;
@@ -108,7 +109,7 @@ export const About: React.FC<AboutProps> = ({ onLearnMoreDomains }) => {
             {/* Laboratory Photo with Precision Border */}
             <div className="relative border border-[#E6E6E6] bg-[#FAFAFA] overflow-hidden group">
               <img
-                src="/src/assets/images/about_engineering_team_1791620929739.jpg"
+                src={CLUB_IMAGES.aboutEngineeringTeam}
                 alt="AGEMC Electronics Engineering students testing an autonomous rover in the laboratory"
                 className="w-full h-[380px] sm:h-[440px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-500 ease-out"
                 loading="lazy"

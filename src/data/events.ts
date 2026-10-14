@@ -1,3 +1,5 @@
+import { CLUB_IMAGES } from '../assets/images';
+
 export type EventCategory = 'WORKSHOPS' | 'COMPETITIONS' | 'TECHNICAL SESSIONS' | 'EXHIBITIONS';
 
 export interface ClubEvent {
@@ -32,7 +34,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     shortDesc: 'A comprehensive, hands-on workshop covering Wi-Fi station setup, MQTT messaging, sensor interfacing, and building your first cloud-connected telemetry node.',
     fullDesc: 'Participants will work directly with genuine ESP32 development boards, connecting environmental sensors, configuring FreeRTOS lightweight tasks, and streaming real-time telemetry to an open-source MQTT dashboard. Designed for students who want to build production-ready connected devices.',
     registrationStatus: 'REGISTRATION OPEN',
-    image: '/src/assets/images/iot_smart_hardware_1791620940762.jpg',
+    image: CLUB_IMAGES.iotSmartHardware,
     speakerOrLead: 'Technical Team Lead & ECE Lab Mentors',
     prerequisites: ['Basic C/C++ programming syntax', 'Personal laptop with VS Code / Arduino IDE installed'],
     takeaways: ['ESP32 hardware architecture understanding', 'Working FreeRTOS task structure', 'Certificate of Completion from SANCHAAR Club'],
@@ -50,7 +52,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     shortDesc: 'Annual departmental robotics contest evaluating closed-loop PID control, precision wheel encoders, and rapid autonomous obstacle avoidance algorithms.',
     fullDesc: 'Teams of up to 4 members will design, program, and race autonomous mobile robots through progressively complex tracks with cross-intersections, variable-radius turns, and dynamic obstacles. Cash prizes and prototyping kit rewards for top-ranked designs.',
     registrationStatus: 'REGISTRATION OPEN',
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
     speakerOrLead: 'SANCHAAR Competition Committee',
     prerequisites: ['Team of 2–4 AGEMC students', 'Autonomous robotic vehicle adhering to dimension limits (20x20 cm)'],
     takeaways: ['Competitive robotics arena testing', 'Hands-on PID tuning feedback from faculty jury', 'Institutional trophies and prototyping components'],
@@ -68,7 +70,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     shortDesc: 'From circuit concept to factory-ready Gerber files. Learn schematic capture, PCB stackup, trace clearance, and SMD footprint generation.',
     fullDesc: 'An intensive masterclass walking through the complete PCB production pipeline: selecting passive footprints, routing differential pairs, avoiding ground loops, creating thermal reliefs, and submitting production fabrication packages.',
     registrationStatus: 'COMING SOON',
-    image: '/src/assets/images/gallery_soldering_lab_1791620964393.jpg',
+    image: CLUB_IMAGES.gallerySolderingLab,
     speakerOrLead: 'Electronics Design Lead',
     prerequisites: ['Basic circuit theory (Ohm’s law, RC filters, Op-Amps)'],
     takeaways: ['Production-ready Gerber package for your custom board', 'Component library management techniques', 'Design For Manufacturing (DFM) guidelines'],
@@ -86,7 +88,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     venue: 'ECE Electronics Hardware Lab, AGEMC',
     shortDesc: 'A full-day introductory boot camp introducing 60+ junior students to microcontrollers, digital I/O, PWM control, and sensor reading.',
     fullDesc: 'Conducted for 1st and 2nd-year students to bridge the gap between textbook circuit analysis and real physical prototyping. Attendees built multi-sensor alarm systems and LED matrix displays.',
-    image: '/src/assets/images/about_engineering_team_1791620929739.jpg',
+    image: CLUB_IMAGES.aboutEngineeringTeam,
     speakerOrLead: 'SANCHAAR Core Team',
     takeaways: ['Over 65 students completed practical hardware builds', 'Distributed starter hardware kits'],
   },
@@ -99,7 +101,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     venue: 'Central Auditorium & Exhibition Hall, AGEMC',
     shortDesc: 'Demonstration of 14 member-built hardware prototypes before faculty judges, department heads, and visiting academic dignitaries.',
     fullDesc: 'Showcase featuring smart agricultural nodes, home automation hubs, autonomous rovers, and biometric security terminals. Reviewed by college administrators and acknowledged for technical execution.',
-    image: '/src/assets/images/hero_robotics_lab_1791620915867.jpg',
+    image: CLUB_IMAGES.heroRoboticsLab,
     speakerOrLead: 'ECE Department Faculty & Club Leads',
     takeaways: ['14 functional prototypes demonstrated live', 'Best Innovation award presented for Smart Solar Tracker'],
   },
@@ -112,7 +114,7 @@ export const CLUB_EVENTS: ClubEvent[] = [
     venue: 'ECE Smart Classroom 2, AGEMC',
     shortDesc: 'Mathematical exploration of differential drive kinematics, odometry calculations, and implementation of wheel velocity feedback loops.',
     fullDesc: 'In-depth seminar focusing on state estimation, Kalman filter basics for encoder and IMU integration, and practical micro-ROS integration with low-cost microcontrollers.',
-    image: '/src/assets/images/project_rover_prototype_1791620953593.jpg',
+    image: CLUB_IMAGES.projectRoverPrototype,
     speakerOrLead: 'Faculty Mentor & Student Leads',
     takeaways: ['Complete Kinematics code repository shared with attendees', 'Live chassis dynamic testing demo'],
   },

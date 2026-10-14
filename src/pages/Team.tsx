@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SANCHAAR_POST_BEARERS,
   SANCHAAR_PRE_FINAL,
   SANCHAAR_SECOND_YEAR,
   SanchaarTeamMember,
 } from '../data/sanchaarData';
+import { MemberDetailModal, ModalMember } from '../components/modals/MemberDetailModal';
 
-const TeamCard: React.FC<SanchaarTeamMember> = ({
+interface TeamCardProps extends SanchaarTeamMember {
+  onSelect: () => void;
+}
+
+const TeamCard: React.FC<TeamCardProps> = ({
   image,
   name,
   position,
   yearDept,
   linkedin,
   github,
+  onSelect,
 }) => {
   return (
-    <div className="card-team">
+    <div
+      className="card-team cursor-pointer transition-transform hover:-translate-y-1"
+      onClick={onSelect}
+      title={`View ${name}'s profile and connections`}
+    >
       <div className="pic-team">
         <img src={image} alt={name} loading="lazy" />
       </div>
@@ -33,7 +43,12 @@ const TeamCard: React.FC<SanchaarTeamMember> = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} LinkedIn`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onSelect();
+            }}
+            title={`Connect with ${name} on LinkedIn`}
           >
             <i className="ri-linkedin-box-line" />
           </a>
@@ -44,7 +59,12 @@ const TeamCard: React.FC<SanchaarTeamMember> = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} GitHub`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onSelect();
+            }}
+            title={`View ${name} on GitHub`}
           >
             <i className="fa fa-github" />
           </a>
@@ -55,6 +75,8 @@ const TeamCard: React.FC<SanchaarTeamMember> = ({
 };
 
 export const Team: React.FC = () => {
+  const [selectedMember, setSelectedMember] = useState<ModalMember | null>(null);
+
   return (
     <div className="body-team" style={{ minHeight: '100vh', paddingTop: '8rem', paddingBottom: '6rem' }}>
       {/* Heading */}
@@ -75,7 +97,11 @@ export const Team: React.FC = () => {
 
           <div className="each-year-team">
             {SANCHAAR_POST_BEARERS.map((member, idx) => (
-              <TeamCard key={`bearer-${idx}`} {...member} />
+              <TeamCard
+                key={`bearer-${idx}`}
+                {...member}
+                onSelect={() => setSelectedMember(member)}
+              />
             ))}
           </div>
         </div>
@@ -85,7 +111,11 @@ export const Team: React.FC = () => {
           <div className="teamheading-team">Pre-Final Year Senior Coordinators</div>
           <div className="each-year-team">
             {SANCHAAR_PRE_FINAL.map((member, idx) => (
-              <TeamCard key={`pre-${idx}`} {...member} />
+              <TeamCard
+                key={`pre-${idx}`}
+                {...member}
+                onSelect={() => setSelectedMember(member)}
+              />
             ))}
           </div>
         </div>
@@ -95,11 +125,21 @@ export const Team: React.FC = () => {
           <div className="teamheading-team">Second Year Junior Coordinators</div>
           <div className="each-year-team">
             {SANCHAAR_SECOND_YEAR.map((member, idx) => (
-              <TeamCard key={`sec-${idx}`} {...member} />
+              <TeamCard
+                key={`sec-${idx}`}
+                {...member}
+                onSelect={() => setSelectedMember(member)}
+              />
             ))}
           </div>
         </div>
       </div>
+
+      {/* Profile Detail Modal */}
+      <MemberDetailModal
+        member={selectedMember}
+        onClose={() => setSelectedMember(null)}
+      />
     </div>
   );
 };

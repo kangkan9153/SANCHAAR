@@ -7,6 +7,8 @@ import {
 } from '../data/sanchaarData';
 import { TECHNOLOGY_DOMAINS } from '../data/domains';
 import { CLUB_PROJECTS } from '../data/projects';
+import { MemberDetailModal, ModalMember } from '../components/modals/MemberDetailModal';
+import { CLUB_IMAGES } from '../assets/images';
 
 interface HomeProps {
   onNavigate: (path: string) => void;
@@ -14,6 +16,7 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
+  const [selectedMember, setSelectedMember] = useState<ModalMember | null>(null);
   // 1. Hero Carousel state
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideCount = SANCHAAR_HERO_SLIDES.length;
@@ -145,7 +148,18 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
       </div>
 
       {/* 2. About Us Section */}
-      <div id="arrow-next" className="about-us-section" style={{ padding: '70px 20px', textAlign: 'center' }}>
+      <div
+        id="arrow-next"
+        className="about-us-section"
+        style={{
+          padding: '70px 20px',
+          textAlign: 'center',
+          backgroundImage: `url(${CLUB_IMAGES.heroRoboticsLab})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+        }}
+      >
         <h1 className="section-title" style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '20px' }}>
           <span className="title1">About</span> <span className="title2">Us</span>
         </h1>
@@ -371,7 +385,17 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
       </div>
 
       {/* 6. Post Bearers / Student Leadership Section */}
-      <div className="team-home-section" style={{ padding: '60px 0', backgroundColor: '#17202a' }}>
+      <div
+        className="team-home-section"
+        style={{
+          padding: '60px 0',
+          backgroundColor: '#17202a',
+          backgroundImage: `url(${CLUB_IMAGES.aboutEngineeringTeam})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+        }}
+      >
         <h1 className="section-title-team" style={{ textAlign: 'center', marginBottom: '40px' }}>
           <span className="title1" style={{ color: '#fff' }}>Student</span>{' '}
           <span className="title2" style={{ color: '#10bfc5' }}>Leadership</span>
@@ -400,7 +424,12 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
             {Array.from({ length: 4 }).map((_, i) => {
               const item = SANCHAAR_POST_BEARERS[(bearerIndex + i) % SANCHAAR_POST_BEARERS.length];
               return (
-                <div key={`${item.name}-${i}`} className="card-teamhome">
+                <div
+                  key={`${item.name}-${i}`}
+                  className="card-teamhome cursor-pointer transition-transform hover:-translate-y-1"
+                  onClick={() => setSelectedMember(item)}
+                  title={`View ${item.name}'s profile and credentials`}
+                >
                   <div className="img-bx-teamhome">
                     <img src={item.image} alt={item.name} />
                   </div>
@@ -419,7 +448,12 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
                             rel="noopener noreferrer"
                             className="linkedin"
                             aria-label={`${item.name} LinkedIn`}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setSelectedMember(item);
+                            }}
+                            title={`Connect with ${item.name} on LinkedIn`}
                           >
                             <i className="ri-linkedin-box-line" />
                           </a>
@@ -431,7 +465,12 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
                             rel="noopener noreferrer"
                             className="instagram"
                             aria-label={`${item.name} GitHub`}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setSelectedMember(item);
+                            }}
+                            title={`View ${item.name} on GitHub`}
                           >
                             <i className="fa fa-github" />
                           </a>
@@ -480,6 +519,12 @@ export const Home: React.FC<HomeProps> = ({ onNavigate, onOpenJoinModal }) => {
           </button>
         </div>
       </div>
+
+      {/* Member Profile Modal */}
+      <MemberDetailModal
+        member={selectedMember}
+        onClose={() => setSelectedMember(null)}
+      />
     </div>
   );
 };
